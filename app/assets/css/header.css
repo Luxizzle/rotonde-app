@@ -1,0 +1,76 @@
+header {
+  height: 40px;
+  max-height: 40px;
+  min-height: 40px;
+  width: 100%;
+  min-width: 100%;
+
+  position: fixed;
+  top: 0;
+
+  display: flex;
+  align-items: stretch;
+
+  -webkit-app-region: drag;
+  user-select: none;
+  -webkit-user-select: none;
+
+  background-color: #2d2d2d;
+  color: #fff;
+  z-index: 9999;
+
+  overflow: hidden;
+}
+
+#app {
+  margin-top: 40px;
+}
+
+.header-start {
+  display: flex;
+  align-items: stretch;
+}
+
+.header-end {
+  display: flex;
+  align-items: stretch;
+  justify-content: flex-end;
+  margin-left: auto;
+  -webkit-box-pack: end;
+}
+
+.header-item {
+  padding: 10px;
+  line-height: 20px;
+  width: auto;
+  -webkit-app-region: no-drag;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.close {
+  width: 40px;
+  text-align: center;
+  background-color: #2d2d2d;
+  transition: background-color .2s;
+}
+
+.close:hover {
+  background-color: rgb(255,50,50);
+}
+
+.minimize {
+  width: 40px;
+  text-align: center;
+  background-color: #2d2d2d;
+  transition: background-color .2s;
+}
+
+.minimize:hover {
+  background-color: #555;
+}
+
+header .md-icon {
+  width: 20px;
+  height: 20px;
+}

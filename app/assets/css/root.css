@@ -1,0 +1,58 @@
+.root {
+  display: flex;
+
+  align-items: stretch;
+  width: 100%;
+  height: 100%;
+}
+
+.root * {
+  
+}
+
+.root-left {
+  width: 300px;
+  padding: 20px;
+  height: 100%;
+  overflow: auto;
+
+  background-color: #eee;
+}
+
+.root-left figure {
+  width: 80px;
+  height: 80px;
+  /*margin-left: 90px;*/
+  margin-bottom: 20px
+}
+
+.root-left figure img {
+  width: 100%;
+  height: 100%;
+}
+
+.root-middle {
+  width: auto;
+  padding: 20px;
+  flex: 1;
+  height: 100%;
+  overflow: auto;
+}
+
+.root-right {
+  width: 300px;
+  padding: 20px;
+  height: 100%;
+  overflow: auto;
+}
+
+.portal-list {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: 10px;
+}
+
+.portal-list-item {
+  overflow: hidden;
+}

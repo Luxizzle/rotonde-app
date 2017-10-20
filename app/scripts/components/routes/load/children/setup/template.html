@@ -1,0 +1,14 @@
+<div class="load-middle">
+  <h1>Setup your rotonde</h1>
+
+  <div class="group">
+    <label for="path">Rotonde path</label>
+    <input ref="path" type="text" v-model="path">
+    <p v-if="warningMsg !== ''" class="message">{{warningMsg}}</p>
+  </div>
+
+  <div class="group">
+    <button @click="setup" :disabled="warningMsg !== ''">Setup</button>
+  </div>
+  
+</div>

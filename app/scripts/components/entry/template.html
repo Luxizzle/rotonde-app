@@ -1,0 +1,23 @@
+<div class="entry">
+  <figure class="entry-icon">
+    <img alt="profile icon" :src="'data:image/svg+xml;utf8,'+entry.icon">
+  </figure>
+
+  <div class="entry-content">
+    <div class="top">
+      <strong>@{{entry.name}} <span v-if="entry.target">> @{{entry.target}}</span></strong><small class="timeago"> ~ {{timeAgo(entry.timestamp)}} ago</small>
+    </div>
+    <div class="content">
+      <p>
+        {{entry.message}}
+      </p>
+      <p class=".qoute" v-if="entry.qoute">
+        {{entry.qoute}}
+      </p>
+    </div>
+    <div class="bottom" v-if="entry.writable">
+      <a><icon name="edit"></icon></a>
+      <a><icon name="delete"></icon></a>
+    </div>
+  </div>
+</div>

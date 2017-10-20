@@ -1,0 +1,49 @@
+{
+  "name": "app",
+  "version": "0.0.1",
+  "description": "",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-packager . --out=dist --asar --overwrite --all"
+  },
+  "dependencies": {
+    "dat-link-resolve": "^1.1.1",
+    "dat-node": "^3.5.3",
+    "electron-debug": "^1.0.0",
+    "emit-stream": "^0.1.2",
+    "feather-icons": "^3.3.0",
+    "fs-extra": "^4.0.2",
+    "globby": "^6.1.0",
+    "lodash": "^4.17.4",
+    "lowdb": "^1.0.0",
+    "moment": "^2.19.1",
+    "p-timeout": "^1.2.0",
+    "pauls-dat-api": "^4.5.0",
+    "prettier-bytes": "^1.0.4",
+    "random-access-file": "^1.8.1",
+    "random-access-memory": "^2.4.0",
+    "shortid": "^2.2.8",
+    "vue": "^2.5.2",
+    "vue-md-icons": "^1.2.0",
+    "vue-router": "^3.0.1",
+    "vuex": "^3.0.0"
+  },
+  "devDependencies": {
+    "devtron": "^1.1.0",
+    "electron": "^1.8.1",
+    "electron-packager": "^8.0.0",
+    "rimraf": "^2.6.2"
+  },
+  "xo": {
+    "semicolon": false,
+    "space": 2,
+    "rules": {
+      "no-return-assign": "off"
+    },
+    "envs": [
+      "node",
+      "browser"
+    ]
+  }
+}

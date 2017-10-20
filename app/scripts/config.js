@@ -1,0 +1,25 @@
+var lowdb = require('lowdb')
+var FileSyncAdapter = require('lowdb/adapters/FileSync')
+var path = require('path')
+var os = require('os')
+
+class Config {
+  constructor(self) {
+    this.db = lowdb(new FileSyncAdapter(path.join(os.homedir(), 'lu-config', 'rotonde-app.json')))
+    
+    this.db
+      .defaults({
+        path: path.join(os.homedir(), 'Rotonde-Client'),
+      })
+      .write()
+  }
+
+  get(path) {
+    return this.db.get(path).value()
+  }
+
+  set(path, value) {
+    this.db.set(path, value).write()
+  }
+}
+var config = new Config()
