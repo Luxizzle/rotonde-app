@@ -1,25 +1,13 @@
-Electron app for Rotonde
+# Electron app for Rotonde
 
-### Dev
+Code is a big mess and i've never really worked with electron before, I'm discovering this all as i go really.
 
-```
-$ npm install
-```
-
-### Run
+### Running the app
 
 ```
-$ npm start
+npm install
+npm start
 ```
-
-### Build
-
-```
-$ npm run build
-```
-
-Builds the app for macOS, Linux, and Windows, using [electron-packager](https://github.com/electron-userland/electron-packager).
-
 
 ## License
 
