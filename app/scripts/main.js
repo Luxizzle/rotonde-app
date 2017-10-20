@@ -122,34 +122,6 @@ class Rotonde extends EventEmitter {
 
   }
 
-  async resolveNameLoop(i) {
-    var url = this.unresolvedNames.pop()
-    try {
-      var hash = await resolveDatUrl(url)
-    } catch(e) {
-      return
-    }
-    
-    url = 'dat://' + hash + '/'
-    var tmppath = path.join(os.tmpdir(), 'lu-rotonde-app', 'resolve-'+i)
-    fs.ensureDirSync(tmppath)
-
-    var dat = Dat(tmppath, { key: url })
-    try {
-      await pda.download(dat.archive, 'portal.json')
-      var portal = pda.readFile(dat.archive, 'portal.json')
-      var data = JSON.stringify(portal)
-
-      if (!data.name) return
-
-      this.resolvedNames.set(url, data.name)
-
-      await this.updateFeed()
-    } catch(e) {
-      return 
-    }
-  }
-
   async updatePortals() {
     var urls = this.account.getPortals()
 
@@ -194,7 +166,7 @@ class Rotonde extends EventEmitter {
   async updateFeed() {
     const ver = feedVersion++
     var feed = []
-    feed = feed.concat(this.account.getFeed())
+    feed = feed.concat(await this.account.getFeed())
 
     var psl = []
     

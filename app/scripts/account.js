@@ -87,21 +87,20 @@ class Account {
     this.rotonde.updateFeed()
   }
 
-  getFeed() {
+  async getFeed() {
     if (!this.data || !this.data.feed) return [];
-
+    
     var feed = []
+    var psl = []
     this.data.feed.forEach((entry) => {
-      feed.push({
-        name: this.data.name,
-        icon: this.icon,
-        timestamp: entry.timestamp,
-        message: entry.message,
-        writable: true
-      })
+      var ps = this.rotonde.createFeedEntry(this, entry)
+        .then(entry => {
+          feed.push(entry)
+        })
+      psl.push(ps)
     })
-
-    //console.log(feed)
+    
+    await Promise.all(psl)
 
     return feed
   }
@@ -110,6 +109,14 @@ class Account {
     if (!this.data || !this.data.port) return [];
 
     return this.data.port
+  }
+
+  submit({message}) {
+    this.data.feed.push({
+      message,
+      timestamp: Date.now()
+    })
+    pda.writeFile(this.dat.archive, 'portal.json', JSON.stringify(this.data))
   }
 }
 

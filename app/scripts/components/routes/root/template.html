@@ -15,6 +15,12 @@
     
   </div>
   <div class="root-middle">
+    <div class="input-box">
+      <div class="group">
+        <input type="text" v-model="message" @keydown.enter="submit" placeholder="Whats on your mind?">
+      </div>
+    </div>
+
     <entry v-for="entry in $store.state.feed" :key="entry.index" :entry="entry"></entry>
   </div>
   <!--<div class="root-right">
