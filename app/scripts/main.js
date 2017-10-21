@@ -108,6 +108,8 @@ class Rotonde extends EventEmitter {
   async start() {
     this.config = config
 
+    this.util = new Util(this)
+
     this.portals = new Map()
 
     this.account = new Account(this)
@@ -298,17 +300,28 @@ class Rotonde extends EventEmitter {
   }
 
   async createFeedEntry(account, entry) {
-    return {
+    var feedEntry = {
       name: account.data.name,
       icon: account.icon,
 
       timestamp: entry.timestamp,
       editstamp: entry.editstamp,
-      target: typeof entry.target === 'string' ? await this.getName(entry.target) : null,
       message: entry.message,
       qoute: entry.qoute ? entry.qoute.message : null,
 
       writable: account.dat.writable
     }
+
+    if (entry.target && typeof entry.target === 'string') {
+      var portal = this.util.lookup(entry.target)
+      if (portal) {
+        feedEntry.target = portal.name
+      } else {
+        feedEntry.target = entry.target.substr(0,12) + '..' + entry.target.substr(entry.target.length-3,2)
+      }
+    }  
+
+    return feedEntry
+
   }
 }
