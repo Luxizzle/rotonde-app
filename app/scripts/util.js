@@ -9,7 +9,7 @@ class Util {
     if (this.portals[url]) return this.portals[url]
     if (this.fetching[url]) return null;
 
-    console.log('fetching ' + url)
+    //console.log('fetching ' + url)
 
     this.fetching[url] = true
     this.fetch(url)
@@ -33,7 +33,7 @@ class Util {
     dat.join()
     var activity = emitStream(pda.createFileActivityStream(dat.archive))
 
-    console.log('fetched ' + url)
+    //console.log('fetched ' + url)
     
     this.onPortalChange(url, resolved, dat)
     activity.on('changed', this.onPortalChange.bind(this, url, resolved, dat))
