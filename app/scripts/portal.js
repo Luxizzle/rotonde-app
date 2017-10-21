@@ -60,13 +60,7 @@ class Portal {
       psl.push(ps)
     })
 
-    //console.log('waiting feed for ' + this.data.name)
-
     await Promise.all(psl)
-
-    //console.log('got feed for ' + this.data.name)
-
-    //console.log(feed)
 
     return feed
   }

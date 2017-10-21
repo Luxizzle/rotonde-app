@@ -17,15 +17,6 @@ function Dat(store = raf, opts = {}) {
   })
 }
 
-function resolveDatUrlSimple(url) {
-  //console.log('resolve-s url', url)
-  //console.log('resolve-s test', !DAT_URL_REGEX.test(url))
-  //console.log('resolve-s exec', DAT_URL_REGEX.exec(url))
-  if (!DAT_URL_REGEX.test(url)) return null;
-  
-  return 'dat://' + DAT_URL_REGEX.exec(url)[1] + '/'
-}
-
 function resolveDatUrl(url) {
   return new Promise((res, reject) => {
     resolve(url, (err, key) => {
