@@ -28,9 +28,9 @@
 				<header v-if="$store.state.loaded">
 					<div class="header-start">
 						<p class="header-item">Rotonde</p>
-						<p class="header-item">{{$store.state.peers}} Peers</p>
-						<p class="header-item">Down {{pretty($store.state.speed.down)}}/s</p>
-						<p class="header-item">Up {{pretty($store.state.speed.up)}}/s</p>
+						<p class="header-item hidden-small">{{$store.state.peers}} Peers</p>
+						<p class="header-item hidden-small">Down {{pretty($store.state.speed.down)}}/s</p>
+						<p class="header-item hidden-small">Up {{pretty($store.state.speed.up)}}/s</p>
 					</div>
 
 					<div class="header-end">

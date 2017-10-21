@@ -1,4 +1,3 @@
-
 class Portal {
   constructor(rotonde, url) {
     this.rotonde = rotonde
@@ -15,7 +14,8 @@ class Portal {
     fs.ensureDirSync(path.join(os.tmpdir(), 'lu-rotonde-app', this.hash))
     
     this.dat = await Dat(path.join(os.tmpdir(), 'lu-rotonde-app', this.hash), {
-      key: this.url
+      key: this.url,
+      sparse: true
     })
 
     this.dat.joinNetwork()
@@ -52,8 +52,8 @@ class Portal {
 
     var feed = []
     var psl = []
-    this.data.feed.forEach((entry) => {
-      var ps = this.rotonde.createFeedEntry(this, entry)
+    this.data.feed.forEach((entry, index) => {
+      var ps = this.rotonde.createFeedEntry(this, entry, index)
         .then(entry => {
           feed.push(entry)
         })

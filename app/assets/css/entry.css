@@ -23,6 +23,8 @@
 .entry-content {
   flex: 1;
   height: auto;
+  width: 100%;
+  max-width: 100%;
 }
 
 .entry-content .top {
@@ -36,4 +38,13 @@
 .entry-content .qoute {
   color: #ccc;
   margin: 10px;
+}
+
+@media screen and (max-width: 800px) {
+  .entry-icon {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    min-height: 40px;
+  }
 }

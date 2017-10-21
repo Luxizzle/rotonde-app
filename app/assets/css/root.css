@@ -37,6 +37,7 @@
   flex: 1;
   height: 100%;
   overflow: auto;
+  overflow-x: hidden;
 }
 
 .root-right {
@@ -55,4 +56,30 @@
 
 .portal-list-item {
   overflow: hidden;
+}
+
+.input-box {
+  position: sticky;
+  top: 0;
+}
+
+@media screen and (max-width: 800px) {
+  .root {
+    /*display: block;*/
+  }
+
+  .root-left {
+    width: 200px;
+  }
+
+  .portal-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+@media screen and (max-width: 600px) {
+  .root-left {
+    display: none;
+  }
 }

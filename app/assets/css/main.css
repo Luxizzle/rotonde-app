@@ -55,3 +55,17 @@ h6 {
 a {
   cursor: pointer;
 }
+
+
+@media screen and (max-width: 800px) {
+  .hidden-medium {
+    display: none;
+  }
+}
+
+
+@media screen and (max-width: 600px) {
+  .hidden-small {
+    display: none;
+  }
+}
