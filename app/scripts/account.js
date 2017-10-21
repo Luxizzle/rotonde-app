@@ -63,11 +63,11 @@ class Account {
 
   async onChange() {
     try {
-      this.icon = await pda.readFile(this.dat.archive, 'media/content/icon.svg') || ''
+      this.icon = await pda.readFile(this.dat.archive, '/media/content/icon.svg') || ''
     } catch(e) {}
 
     try {
-      var data = await pda.readFile(this.dat.archive, 'portal.json')
+      var data = await pda.readFile(this.dat.archive, '/portal.json')
       //console.log(data)
       
       this.data = JSON.parse(data)
@@ -78,7 +78,7 @@ class Account {
       this.rotonde.store.commit('icon', this.icon)
       
     } catch(e) {
-      console.log(e)
+      console.warn(e)
       // give some kind of error notification here
     }
 
@@ -111,12 +111,22 @@ class Account {
     return this.data.port
   }
 
-  submit({message}) {
+  async submit(input) {
+    //var data = await pda.readFile(this.dat.archive, '/portal.json')
+    
+    //this.data = JSON.parse(data)
+
     this.data.feed.push({
-      message,
+      message: input.message,
       timestamp: Date.now()
     })
-    pda.writeFile(this.dat.archive, 'portal.json', JSON.stringify(this.data))
+
+    console.log(this.data)
+
+    fs.writeFileSync(path.join(this.dat.path, 'portal.json'), JSON.stringify(this.data, null, '\t'))
+      
+    console.log('updated')
+
   }
 }
 
