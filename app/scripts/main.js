@@ -28,10 +28,6 @@ class Rotonde extends EventEmitter {
 
     console.log('Loading rotonde...')
 
-    this.resolvedNames = new Map()
-    this.unresolvedNames = []
-    this.resolving = false
-
     this.router = new VueRouter({
       routes: [
         { path: '/', redirect: '/load'},
@@ -119,9 +115,6 @@ class Rotonde extends EventEmitter {
     await this.account.start()
 
     console.log('Done')
-
-    //this.router.push('/home')
-
   }
 
   async updatePortals() {
@@ -188,115 +181,6 @@ class Rotonde extends EventEmitter {
     this.store.commit('feed', feed)
 
     return feed
-  }
-
-  resolveName(url) {
-    return new Promise((resolve, reject) => {
-      if (this.resolvedNames.has(url)) return resolve(this.resolvedNames.get(url));
-      if (this.unresolvedNames.find(u => u === url)) return resolve(url);
-  
-      this.unresolvedNames.push(url)
-
-      resolve(url)
-  
-      if (this.resolving) return
-      this.resolving = true
-      
-      var _this = this
-      
-      async function startLoop() {
-        while (_this.resolving) {
-          //console.log('loop resolve', _this.unresolvedNames.length)
-
-          await loop()
-          
-          if (_this.unresolvedNames.length === 0) {
-            _this.resolving = false
-
-            console.log('finished resolve loop')
-            console.log(_this.resolvedNames)
-
-            break;
-          }
-        }
-        
-        async function loop(i) {
-          var url = _this.unresolvedNames.pop()
-          //console.log('resolving', url)
-          try {
-            //var hash = await resolveDatUrl(url)
-
-            //url = 'dat://' + hash + '/'
-            var tmppath = path.join(os.tmpdir(), 'lu-rotonde-app', 'resolve-'+shortid.generate( ))
-            fs.ensureDirSync(tmppath)
-        
-            var dat = await Dat(tmppath, { key: url })
-            //console.log(dat)
-            //dat.join()
-            var portalPromise = (new Promise((res) => {
-              dat.join((err) => {
-                dat.archive.readFile('portal.json', 'utf8', (err, file) => {
-                  res(file)
-                })
-              })
-            }))
-            var portal = await pTimeout(portalPromise, 1000 * 10)
-            //var portal = await portalPromise
-            
-
-            if (!portal) return
-
-            //await pda.download(dat.archive, 'portal.json')
-            //var portal = await pda.readFile(dat.archive, 'portal.json')
-            var data = JSON.parse(portal)
-
-            //console.log(data)
-      
-            if (data.name) {
-              console.log('resolved name!', data.name)
-              _this.resolvedNames.set(url, data.name)
-            }
-
-            dat.leave()
-            dat.close()
-
-            await _this.updateFeed()
-
-          } catch(e) {console.warn(e)}
-
-          return
-        }
-      }
-
-      startLoop()
-
-      
-    })
-    
-  }
-
-  async getName(url) {
-
-    if (DAT_URL_REGEX.exec(url)) {
-      url = 'dat://' + DAT_URL_REGEX.exec(url)[1] + '/'
-    } else { // this literally already runs out of memory...
-      //var hash = await resolveDatUrl(url)
-      //url = 'dat://' + hash + '/'
-    }
-
-    //console.log('getName', url)
-
-    if (url === this.account.url) return this.account.data.name;
-
-    var portal = this.portals.get(url)
-
-    
-    if (portal) {
-      if (portal.data.name) return portal.data.name;
-      return '?' + portal.url
-    }
-
-    return this.resolveName(url)
   }
 
   async createFeedEntry(account, entry) {
