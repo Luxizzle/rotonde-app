@@ -183,10 +183,11 @@ class Rotonde extends EventEmitter {
     return feed
   }
 
-  async createFeedEntry(account, entry) {
+  async createFeedEntry(account, entry, id) {
     var feedEntry = {
       name: account.data.name,
       icon: account.icon,
+      id: id,
 
       timestamp: entry.timestamp,
       editstamp: entry.editstamp,

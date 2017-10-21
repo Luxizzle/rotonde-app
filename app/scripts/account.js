@@ -92,8 +92,8 @@ class Account {
     
     var feed = []
     var psl = []
-    this.data.feed.forEach((entry) => {
-      var ps = this.rotonde.createFeedEntry(this, entry)
+    this.data.feed.forEach((entry, index) => {
+      var ps = this.rotonde.createFeedEntry(this, entry, index)
         .then(entry => {
           feed.push(entry)
         })
