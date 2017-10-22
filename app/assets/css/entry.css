@@ -59,3 +59,14 @@ figure.media {
     min-height: 40px;
   }
 }
+
+@media screen and (max-width: 600px) {
+  .entry {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .entry-icon {
+    margin-right: .5rem;
+  }
+}

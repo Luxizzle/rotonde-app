@@ -108,4 +108,9 @@
   .root-left {
     display: none;
   }
+
+  .input-box {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
 }
