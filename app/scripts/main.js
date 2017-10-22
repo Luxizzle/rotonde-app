@@ -208,7 +208,6 @@ class Rotonde extends EventEmitter {
         message: entry.quote.message,
         timestamp: entry.quote.timestamp,
         editstamp: entry.quote.editstamp,
-        media: entry.quote.media
       } : null,
 
       writable: account.dat.writable
