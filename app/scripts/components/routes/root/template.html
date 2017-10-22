@@ -1,7 +1,7 @@
 <div class="root">
   <div class="root-left profile">
     <figure class="icon">
-      <img :src="'data:image/svg+xml;utf8,'+$store.state.data.icon" alt="Profile icon">
+      <img :src="$store.state.data.icon" alt="Profile icon">
     </figure>
     <p class="name"><strong>@{{$store.state.data.name}}</strong></p>
     <p class="desc">{{$store.state.data.desc}}</p>
@@ -15,11 +15,7 @@
     
   </div>
   <div class="root-middle">
-    <div class="input-box">
-      <div class="group">
-        <input type="text" v-model="message" @keydown.enter="submit" placeholder="Whats on your mind?">
-      </div>
-    </div>
+    <input-box></input-box>
 
     <entry v-for="entry in $store.state.feed" :key="entry.index" :entry="entry"></entry>
   </div>

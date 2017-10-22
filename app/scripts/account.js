@@ -62,9 +62,8 @@ class Account {
   }
 
   async onChange() {
-    try {
-      this.icon = await pda.readFile(this.dat.archive, '/media/content/icon.svg') || ''
-    } catch(e) {}
+
+    this.icon = path.join(this.dat.path, 'media/content/icon.svg')
 
     try {
       var data = await pda.readFile(this.dat.archive, '/portal.json')
@@ -118,10 +117,11 @@ class Account {
 
     this.data.feed.push({
       message: input.message,
+      target: input.target ? input.target : undefined,
       timestamp: Date.now()
     })
 
-    console.log(this.data)
+    //console.log(this.data)
 
     fs.writeFileSync(path.join(this.dat.path, 'portal.json'), JSON.stringify(this.data, null, '\t'))
       

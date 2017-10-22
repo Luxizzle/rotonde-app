@@ -146,9 +146,21 @@ class Rotonde extends EventEmitter {
       this.portals.delete(key)
     })
 
-    var names = Array.from(this.portals).map((portal) => {
-      //console.log(portal[1])
-      return portal[1].data.name || portal[1].url
+    var names = []
+
+    this.portals.forEach((portal) => {
+      var follows = false
+      //console.log(portal)
+      if (portal.data.port) {
+        follows = portal.data.port.some((p) => {
+          try {
+            return ('dat://' + DAT_URL_REGEX.exec(p)[1] + '/') === this.account.url
+          } catch(e) {
+            return false
+          }
+        })
+      }
+      names.push( (follows ? '@' : '~') + (portal.data.name || portal.url) )
     })
 
     //console.log(names)
@@ -192,21 +204,43 @@ class Rotonde extends EventEmitter {
       timestamp: entry.timestamp,
       editstamp: entry.editstamp,
       message: entry.message,
-      qoute: entry.qoute ? entry.qoute.message : null,
+      quote: entry.quote ? {
+        message: entry.quote.message,
+        timestamp: entry.quote.timestamp,
+        editstamp: entry.quote.editstamp,
+        media: entry.quote.media
+      } : null,
 
       writable: account.dat.writable
     }
 
+    if (entry.media) {
+      if ( !account.dat.writable ) try { await pda.download(account.dat.archive, 'media/content/' + entry.media) } catch(e) {}
+      feedEntry.media = path.join(account.dat.path, 'media/content/', entry.media)
+    }
+
+    if (entry.quote && entry.quote.media) {
+      var portal = await this.util.lookup(entry.target)
+      if (portal) {
+        if ( !portal.dat.writable ) try { await pda.download(portal.dat.archive, 'media/content/' + entry.quote.media) } catch(e) {}
+        feedEntry.quote.media = path.join(portal.dat.path, 'media/content/', entry.quote.media)
+      }
+    }
+
     if (entry.target && typeof entry.target === 'string') {
-      var portal = this.util.lookup(entry.target)
+      var portal = await this.util.lookup(entry.target)
       if (portal) {
         feedEntry.target = portal.name
       } else {
-        feedEntry.target = entry.target.substr(0,12) + '..' + entry.target.substr(entry.target.length-3,2)
+        feedEntry.target = shortenHash(entry.target)
       }
     }  
 
     return feedEntry
 
   }
+}
+
+function shortenHash(hash) {
+  return hash.substr(0,12) + '..' + hash.substr(hash.length-3,2)
 }

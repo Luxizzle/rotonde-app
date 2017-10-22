@@ -15,6 +15,7 @@
     "feather-icons": "^3.3.0",
     "fs-extra": "^4.0.2",
     "globby": "^6.1.0",
+    "horsey": "^4.2.2",
     "lodash": "^4.17.4",
     "lowdb": "^1.0.0",
     "moment": "^2.19.1",

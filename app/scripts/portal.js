@@ -29,9 +29,7 @@ class Portal {
   }
 
   async onChange() {
-    try {
-      this.icon = await pda.readFile(this.dat.archive, 'media/content/icon.svg') || ''
-    } catch(e) {}
+    this.icon = path.join(this.dat.path, 'media/content/icon.svg') 
 
     try {
       var data = await pda.readFile(this.dat.archive, 'portal.json')

@@ -4,6 +4,8 @@
   align-items: stretch;
 
   margin-top: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 .entry-icon {
@@ -32,12 +34,21 @@
 }
 
 .entry-content .top .timeago {
-  color: #ccc;
+  color: #444;
 }
 
-.entry-content .qoute {
-  color: #ccc;
+.quote {
+  color: #444;
   margin: 10px;
+  width: 80%;
+  max-width: 100%;
+}
+
+figure.media {
+  margin-top: 10px;
+  width: 100%;
+  height: auto;
+  max-width: 600px;
 }
 
 @media screen and (max-width: 800px) {

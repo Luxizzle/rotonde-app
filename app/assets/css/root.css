@@ -33,7 +33,7 @@
 
 .root-middle {
   width: auto;
-  padding: 20px;
+  /*padding: 20px;*/
   flex: 1;
   height: 100%;
   overflow: auto;
@@ -61,6 +61,32 @@
 .input-box {
   position: sticky;
   top: 0;
+  transition: all .2s;
+  padding: 20px;
+  opacity: .5;
+}
+
+.input-box:hover {
+  background-color: #eee;
+  opacity: 1;
+}
+
+.input-box .more {
+  transition: all .2s;
+  display: none;
+  opacity: 0
+}
+
+.input-box:hover .more, .input-box:focus .more {
+  display: block;
+  opacity: 1;
+}
+
+.input-box textarea {
+  resize: none;
+  max-height: 3em;
+  height: 36px;
+
 }
 
 @media screen and (max-width: 800px) {
