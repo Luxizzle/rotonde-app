@@ -2,9 +2,13 @@ var lowdb = require('lowdb')
 var FileSyncAdapter = require('lowdb/adapters/FileSync')
 var path = require('path')
 var os = require('os')
+var fs = require('fs-extra')
+
 
 class Config {
   constructor(self) {
+    var cpath = path.join(os.homedir(), 'lu-config');
+    fs.ensureDirSync(cpath)
     this.db = lowdb(new FileSyncAdapter(path.join(os.homedir(), 'lu-config', 'rotonde-app.json')))
     
     this.db
