@@ -10,22 +10,18 @@ module.exports = function() {
       }
     },
     methods: {
-      inputHandler(e) {
-        if (e.keyCode === 13 && e.shiftKey) {
-          e.preventDefault();
-          this.submit();
-        }
-      },
       submit() {
-        if (this.message.trim() === '') return
+        console.log(this.message, this.target)
 
-        this.message = ''
-        this.target = ''
+        if (this.message.trim() === '') return
 
         rotonde.account.submit({
           message: this.message.trim(),
           target: this.target.trim() === '' ? undefined : this.target.trim()
         })
+
+        this.message = ''
+        this.target = ''
       }
     },
     mounted() {

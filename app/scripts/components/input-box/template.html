@@ -1,6 +1,6 @@
 <div class="input-box">
   <div class="group">
-    <input type="text" @keydown="inputHandler" v-model.lazy.trim="message" ref="message" placeholder="What's on your mind?">
+    <input type="text" @keydown.enter="submit" v-model.trim="message" ref="message" placeholder="What's on your mind?">
   </div>
   <div class="more">
     <div class="group">
