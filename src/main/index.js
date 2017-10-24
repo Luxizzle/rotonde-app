@@ -7,7 +7,13 @@ const isDevelopment = process.env.NODE_ENV !== 'production'
 let mainWindow
 
 function createMainWindow() {
-  const window = new BrowserWindow()
+  const window = new BrowserWindow({
+    width: 800,
+    height: 600,
+    minHeight: 300,
+    minWidth: 400,
+    frame: false
+  })
 
   const url = isDevelopment
     ? `http://localhost:${process.env.ELECTRON_WEBPACK_WDS_PORT}`
@@ -22,14 +28,7 @@ function createMainWindow() {
   window.on('closed', () => {
     mainWindow = null
   })
-/*
-  window.webContents.on('devtools-opened', () => {
-    window.focus()
-    setImmediate(() => {
-      window.focus()
-    })
-  })
-*/
+
   return window
 }
 
