@@ -1,0 +1,35 @@
+{
+  "name": "rotonde-app",
+  "version": "0.0.1",
+  "description": "App for browsing your decentralized rotonde feed.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "electron-webpack dev",
+    "compile": "electron-webpack",
+    "build": "npm run compile && electron-builder"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Luxizzle/rotonde-app.git"
+  },
+  "keywords": [
+    "electron",
+    "rotonde",
+    "decentralized",
+    "p2p",
+    "dat",
+    "beaker"
+  ],
+  "author": "Lux Pandora (Jelmer)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Luxizzle/rotonde-app/issues"
+  },
+  "homepage": "https://github.com/Luxizzle/rotonde-app#readme",
+  "devDependencies": {
+    "electron": "^1.7.9",
+    "electron-builder": "^19.40.0",
+    "electron-webpack": "^1.9.0",
+    "webpack": "^3.8.1"
+  }
+}
