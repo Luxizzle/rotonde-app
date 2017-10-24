@@ -111,6 +111,8 @@ class Account {
   }
 
   async submit(input) {
+    // pda doesnt write file?
+
     //var data = await pda.readFile(this.dat.archive, '/portal.json')
     
     //this.data = JSON.parse(data)

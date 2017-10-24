@@ -4,7 +4,6 @@ class Portal {
     this.url = url
 
     this.data = {}
-    this.icon = ''
   }
 
   async start() {
